@@ -11,7 +11,6 @@ if platform.is_win then
       { label = 'Command Prompt', args = { 'cmd' } },
       { label = 'PowerShell Core', args = { 'pwsh', '-NoLogo' } },
       { label = 'PowerShell Desktop', args = { 'powershell' } },
-      { label = 'Nushell', args = { 'nu' } },
       {
          label = 'Git Bash',
          args = { 'C:\\Users\\serafeim\\scoop\\apps\\git\\current\\bin\\bash.exe' },

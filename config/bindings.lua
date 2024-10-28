@@ -16,6 +16,7 @@ end
 -- stylua: ignore
 local keys = {
    -- misc/useful --
+   { key = '`', mods = 'LEADER', action = act.SendString('`') },
    { key = 'F1', mods = 'NONE', action = 'ActivateCopyMode' },
    { key = 'F2', mods = 'NONE', action = act.ActivateCommandPalette },
    { key = 'F3', mods = 'NONE', action = act.ShowLauncher },
@@ -59,9 +60,8 @@ local keys = {
 
    -- tabs --
    -- tabs: spawn+close
-   { key = 't',          mods = mod.SUPER,     action = act.SpawnTab('DefaultDomain') },
-   { key = 't',          mods = mod.SUPER_REV, action = act.SpawnTab({ DomainName = 'WSL:Ubuntu' }) },
-   { key = 'w',          mods = mod.SUPER_REV, action = act.CloseCurrentTab({ confirm = false }) },
+   { key = 't',          mods = 'LEADER',     action = act.SpawnTab('DefaultDomain') },
+   { key = 'w',          mods = 'LEADER', action = act.CloseCurrentTab({ confirm = false }) },
 
    -- tabs: navigation
    { key = '[',          mods = mod.SUPER,     action = act.ActivateTabRelative(-1) },
@@ -130,13 +130,13 @@ local keys = {
    -- panes --
    -- panes: split panes
    {
-      key = [[\]],
-      mods = mod.SUPER,
+      key = '-',
+      mods = 'LEADER',
       action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
    },
    {
-      key = [[\]],
-      mods = mod.SUPER_REV,
+      key = '\\',
+      mods = 'LEADER',
       action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
    },
 
@@ -145,13 +145,17 @@ local keys = {
    { key = 'w',     mods = mod.SUPER,     action = act.CloseCurrentPane({ confirm = false }) },
 
    -- panes: navigation
-   { key = 'k',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Up') },
-   { key = 'j',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Down') },
-   { key = 'h',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Left') },
-   { key = 'l',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Right') },
+   { key = 'UpArrow',     mods = 'LEADER', action = act.ActivatePaneDirection('Up') },
+   { key = 'k',     mods = 'LEADER', action = act.ActivatePaneDirection('Up') },
+   { key = 'DownArrow',     mods = 'LEADER', action = act.ActivatePaneDirection('Down') },
+   { key = 'j',     mods = 'LEADER', action = act.ActivatePaneDirection('Down') },
+   { key = 'h',     mods = 'LEADER', action = act.ActivatePaneDirection('Left') },
+   { key = 'LeftArrow',     mods = 'LEADER', action = act.ActivatePaneDirection('Left') },
+   { key = 'l',     mods = 'LEADER', action = act.ActivatePaneDirection('Right') },
+   { key = 'RightArrow',     mods = 'LEADER', action = act.ActivatePaneDirection('Right') },
    {
-      key = 'p',
-      mods = mod.SUPER_REV,
+      key = 's',
+      mods = 'LEADER',
       action = act.PaneSelect({ alphabet = '1234567890', mode = 'SwapWithActiveKeepFocus' }),
    },
 
@@ -204,11 +208,17 @@ local mouse_bindings = {
       mods = 'CTRL',
       action = act.OpenLinkAtMouseCursor,
    },
+   {
+      event = { Up = { streak = 1, button = 'Right' } },
+      mods = 'NONE',
+      action = act.PasteFrom('Clipboard')
+   },
 }
 
 return {
-   disable_default_key_bindings = true,
-   leader = { key = 'Space', mods = mod.SUPER_REV },
+   disable_default_key_bindings = false,
+   -- leader = { key = 'Space', mods = mod.SUPER_REV },
+   leader = { key = '`'},
    keys = keys,
    key_tables = key_tables,
    mouse_bindings = mouse_bindings,
