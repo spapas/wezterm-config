@@ -3,6 +3,8 @@ local gpu_adapters = require('utils.gpu_adapter')
 local colors = require('colors.custom')
 
 return {
+    initial_rows=30,
+    initial_cols=100,
    animation_fps = 60,
    max_fps = 60,
    front_end = 'WebGpu',
